@@ -7,6 +7,7 @@ export const StyledSignUpPageHeader = styled.header`
     align-items: center;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    margin: 2rem .5rem;
   }
   div > h1 {
     color: var(--color-primary);
@@ -28,6 +29,7 @@ export const StyledSignUpPageMain = styled.main`
   align-items: center;
   margin-top: 1rem;
   margin-bottom: 2rem;
+  padding: 0 .5rem;
 
   div {
     display: flex;
@@ -36,6 +38,7 @@ export const StyledSignUpPageMain = styled.main`
     width: 100%;
     height: 100%;
     padding-top: 2rem;
+    border-radius: 4px;
     background-color: var(--gray3);
   }
 
@@ -73,6 +76,13 @@ export const StyledSignUpPageMain = styled.main`
     border-radius: 4px;
   }
 
+  form p {
+    color: var(--gray1);
+    font-size: 0.8rem;
+    width: 90%;
+    margin: 0 auto 0.5rem;
+  }
+
   form > select {
     width: 90%;
     margin: 0 auto;
@@ -83,17 +93,17 @@ export const StyledSignUpPageMain = styled.main`
     border-radius: 4px;
   }
 
-  form > button{
+  form > button {
     margin: 1rem auto 1rem;
     width: 90%;
     height: 3rem;
     color: #fff;
-    font-size: .8rem;
+    font-size: 0.8rem;
     background-color: var(--color-primary-Negative);
     border-radius: 4px;
   }
 
-  form > button:hover{
+  form > button:hover {
     background-color: var(--color-primary-Focus);
   }
 `;

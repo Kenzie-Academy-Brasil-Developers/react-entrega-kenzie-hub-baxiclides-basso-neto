@@ -1,26 +1,62 @@
 import { StyledSignUpPageHeader, StyledSignUpPageMain } from "./signupstyle";
 import { useForm } from "react-hook-form";
-import {yupResolver} from '@hookform/resolvers/yup'
-import * as yup from 'yup'
+import { useNavigate } from "react-router-dom";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import api from "../../services/api";
+import { toast } from "react-toastify";
+import { useState } from "react";
+
+const formSchema = yup
+  .object()
+  .shape({
+    name: yup.string().required("Nome obrigatório"),
+    email: yup.string().required("Email obrigatório").email("Email inválido"),
+    password: yup
+      .string()
+      .required("Senha obrigatória")
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "A senha deve ter pelo menos 8 caracteres, incluindo letras, números e um símbolo"
+      ),
+    confirm: yup
+      .string()
+      .required("confirmar a senha")
+      .oneOf([yup.ref("password"), null], "As senhas não correspondem"),
+    bio: yup.string().required("Campo obrigatório"),
+    contact: yup.string().required("Campo obrigatório"),
+
+    course_module: yup.string().required("Campo obrigatório"),
+  });
 
 const SignUpPage = () => {
-    const formSchema = yup.object().shape({
-        name: yup.string().required('Nome obrigatório'),
-        email: yup.string().required('Email obrigatório').email('Email inválido'),
-        senha: yup.string().required('Senha obrigatória'),
-        confirmar: yup.string().required('Campo obrigatório'),
-        bio: yup.string().required('Campo obrigatório'),
-        contact: yup.string().required('Campo obrigatório').matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/, 'Telefone inválido'),
-        course_module: yup.string().required('Campo obrigatório'),
-    })
+  const [disable, setDisable] = useState(false);
 
-    const {register, handleSubmit, formState: {errors}} = useForm({
-        resolver: yupResolver(formSchema)
-    })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(formSchema),
+  });
 
-    const onSubmitFunction = (data)=> console.log(data)
+  const navigate = useNavigate();
 
-    console.log(errors)
+  const onSubmitFunction = async (data) => {
+    
+    delete data.confirm
+  
+    try {
+      await api.post("users", data);
+      toast.success('Cadastrado com sucesso')
+      navigate("/");
+    } catch (error) {
+      console.log(error)
+      toast.error("Tente novamente");
+    } finally {
+      setDisable(true);
+    }
+  };
 
   return (
     <>
@@ -37,31 +73,63 @@ const SignUpPage = () => {
           <h5>Rápido e grátis, vamos nessa</h5>
           <form onSubmit={handleSubmit(onSubmitFunction)}>
             <label htmlFor="name">Nome</label>
-            <input type="text" placeholder="Digite aqui seu nome" {...register('name')} />
-            {errors.name && errors.name.message}
+            <input
+              id="name"
+              type="text"
+              placeholder="Digite aqui seu nome"
+              {...register("name")}
+            />
+            <p>{errors.name && errors.name.message}</p>
             <label htmlFor="Email">Email</label>
-            <input type="text" placeholder="Digite aqui seu email" {...register('email')}  />
-            {errors.email && errors.email.message}
-            <label htmlFor="Senha">Senha</label>
-            <input type="text" placeholder="Digite aqui sua senha" {...register('senha')} />
-            {errors.senha && errors.senha.message}
-            <label htmlFor="ConfirmarSenha">Confirmar Senha</label>
-            <input type="text" placeholder="Digite novamente sua senha" {...register('confimar')} />
-            {errors.confirmar && errors.confirmar.message}
+            <input
+              id="Email"
+              type="text"
+              placeholder="Digite aqui seu email"
+              {...register("email")}
+            />
+            <p>{errors.email && errors.email.message}</p>
+            <label htmlFor="password">Senha</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="Digite aqui sua senha"
+              {...register("password")}
+            />
+            <p>{errors.password && errors.password.message}</p>
+            <label htmlFor="confirm">Confirmar Senha</label>
+            <input
+              id="confirm"
+              type="password"
+              placeholder="Digite novamente sua senha"
+              {...register("confirm")}
+            />
+            <p>{errors.confirmar && errors.confirmar.message}</p>
             <label htmlFor="Bio">Bio</label>
-            <input type="text" placeholder="Fale sobre você" {...register('bio')} />
-            {errors.bio && errors.bio.message}
+            <input
+              id="Bio"
+              type="text"
+              placeholder="Fale sobre você"
+              {...register("bio")}
+            />
+            <p>{errors.bio && errors.bio.message}</p>
             <label htmlFor="Contato">Contato</label>
-            <input type="text" placeholder="Opção de contato" {...register('contact')} />
-            {errors.contact && errors.contact.message}
+            <input
+              id="Contato"
+              type="text"
+              placeholder="Opção de contato"
+              {...register("contact")}
+            />
+            <p>{errors.contact && errors.contact.message}</p>
             <label htmlFor="modulo">Selecionar módulo</label>
-            <select name="modulo" id="modulo" {...register('course_module')}>
-                <option value="Primeiro Módulo">Primeiro Módulo</option>
-                <option value="Segundo Módulo">Segundo Módulo</option>
-                <option value="Terceiro Módulo">Segundo Módulo</option>
-                <option value="Quarto Módulo">Segundo Módulo</option>
+            <select name="modulo" id="modulo" {...register("course_module")}>
+              <option value="Primeiro Módulo">Primeiro Módulo</option>
+              <option value="Segundo Módulo">Segundo Módulo</option>
+              <option value="Terceiro Módulo">Segundo Módulo</option>
+              <option value="Quarto Módulo">Segundo Módulo</option>
             </select>
-            <button type="submit">Cadastrar</button>
+            <button type="submit" onClick={() => setDisable(true)}>
+              Cadastrar
+            </button>
           </form>
         </div>
       </StyledSignUpPageMain>
