@@ -13,8 +13,8 @@ const formShema = yup.object().shape({
 });
 
 const LoginPage = () => {
-  const [loading, setLoading] = useState(false)
-  const [user, setUser] = useState()
+  
+  const [user, setUser] = useState({})
   const {
     register,
     handleSubmit,
@@ -22,26 +22,30 @@ const LoginPage = () => {
   } = useForm({
     resolver: yupResolver(formShema),
   });
-
+  
   const navigate = useNavigate()
-
+  
   const login = async(data) => {
-    setLoading(true)
+  
     
     try{
-      await api.post('sessions', data)
-      setUser(data.user)
-      localStorage.setItem('@TOKEN', JSON.stringify(data.token))
+      const loggeduser = await api.post('sessions', data)
+      setUser(loggeduser.data.user)
+      localStorage.setItem('@TOKEN', (loggeduser.data.token))
+      localStorage.setItem('@USERID', (loggeduser.data.user.id))
+      localStorage.setItem('@USENAME', (loggeduser.data.user.name))
+      localStorage.setItem('@MODULE', (loggeduser.data.user.course_module))
+      // localStorage.setItem('@TECHTITLE', (loggeduser.data.user.techs.title))
+      // localStorage.setItem('@TECHSTATUS', (loggeduser.data.user.techs.status))
      
-
-    console.log(user)
       navigate('/dashboard')
     }catch(error){
       console.log(error)
       toast.error('Dados inválidos')
-    }
+    } 
 
   };
+
 
   return (
     <header>

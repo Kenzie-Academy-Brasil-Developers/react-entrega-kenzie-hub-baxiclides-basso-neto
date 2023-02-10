@@ -7,27 +7,25 @@ import api from "../../services/api";
 import { toast } from "react-toastify";
 import { useState } from "react";
 
-const formSchema = yup
-  .object()
-  .shape({
-    name: yup.string().required("Nome obrigatório"),
-    email: yup.string().required("Email obrigatório").email("Email inválido"),
-    password: yup
-      .string()
-      .required("Senha obrigatória")
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        "A senha deve ter pelo menos 8 caracteres, incluindo letras, números e um símbolo"
-      ),
-    confirm: yup
-      .string()
-      .required("confirmar a senha")
-      .oneOf([yup.ref("password"), null], "As senhas não correspondem"),
-    bio: yup.string().required("Campo obrigatório"),
-    contact: yup.string().required("Campo obrigatório"),
+const formSchema = yup.object().shape({
+  name: yup.string().required("Nome obrigatório"),
+  email: yup.string().required("Email obrigatório").email("Email inválido"),
+  password: yup
+    .string()
+    .required("Senha obrigatória")
+    .matches(
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+      "A senha deve ter pelo menos 8 caracteres, incluindo letras, números e um símbolo"
+    ),
+  confirm: yup
+    .string()
+    .required("confirmar a senha")
+    .oneOf([yup.ref("password"), null], "As senhas não correspondem"),
+  bio: yup.string().required("Campo obrigatório"),
+  contact: yup.string().required("Campo obrigatório"),
 
-    course_module: yup.string().required("Campo obrigatório"),
-  });
+  course_module: yup.string().required("Campo obrigatório"),
+});
 
 const SignUpPage = () => {
   const [disable, setDisable] = useState(false);
@@ -43,15 +41,14 @@ const SignUpPage = () => {
   const navigate = useNavigate();
 
   const onSubmitFunction = async (data) => {
-    
-    delete data.confirm
-  
+    delete data.confirm;
+
     try {
       await api.post("users", data);
-      toast.success('Cadastrado com sucesso')
+      toast.success("Cadastrado com sucesso");
       navigate("/");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast.error("Tente novamente");
     } finally {
       setDisable(true);
@@ -122,10 +119,12 @@ const SignUpPage = () => {
             <p>{errors.contact && errors.contact.message}</p>
             <label htmlFor="modulo">Selecionar módulo</label>
             <select name="modulo" id="modulo" {...register("course_module")}>
-              <option value="Primeiro Módulo">Primeiro Módulo</option>
-              <option value="Segundo Módulo">Segundo Módulo</option>
-              <option value="Terceiro Módulo">Segundo Módulo</option>
-              <option value="Quarto Módulo">Segundo Módulo</option>
+              <option value="Primeiro Módulo">
+                Primeiro Módulo - Introducação ao Frontend
+              </option>
+              <option value="Segundo Módulo - JavaScript Avançado">Segundo Módulo - JavaScript Avançado</option>
+              <option value="Terceiro Módulo - Introdução ao ReactJS">Terceiro Módulo - Introdução ao ReactJS</option>
+              <option value="Quarto Módulo - React Avançado">Quarto Módulo - React Avançado</option>
             </select>
             <button type="submit" onClick={() => setDisable(true)}>
               Cadastrar
