@@ -60,7 +60,7 @@ const SignUpPage = () => {
       <StyledSignUpPageHeader>
         <div>
           <h1>Kenzie Hub</h1>
-          <button>Voltar</button>
+          <button onClick={()=>{navigate('/')}} >Voltar</button>
         </div>
       </StyledSignUpPageHeader>
 

@@ -8,12 +8,14 @@ const StyledHeaderDashboard = styled.header`
     border-bottom: 3px solid var(--gray3);
     height: 100%;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   div > h1 {
     color: var(--color-primary);
     font-size: 1rem;
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 5rem;
     margin-bottom: 1rem;
     align-self: center;
   }
@@ -25,18 +27,31 @@ const StyledHeaderDashboard = styled.header`
     font-size: 0.8rem;
     border-radius: 0.25rem;
   }
+
+  div > button:hover {
+    background-color: var(--color-primary);
+  }
+
+  @media(min-width: 769px){
+    div >h1{
+      margin-top: 2rem;
+    }
+  }
 `;
 export default StyledHeaderDashboard;
 
 export const StyledMainDashboard = styled.main`
   padding: 0 0.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  border: 3px solid var(--gray3);
 
   section {
-      border-bottom: 3px solid var(--gray3);
-      
-      &:nth-child(2) {
-        border-bottom: none;
-      }
+    border-bottom: 3px solid var(--gray3);
+
+    &:nth-child(2) {
+      border-bottom: none;
+    }
   }
 
   section > div {
@@ -66,9 +81,63 @@ export const StyledMainDashboard = styled.main`
 
   div > button {
     background-color: var(--gray3);
-    padding: 5px 16px;
+    margin-top: 1rem;
+    width: 2rem;
+    height: 2rem;
     color: var(--gray0);
     font-size: 0.8rem;
     border-radius: 0.25rem;
+  }
+
+  div > button:hover {
+    background-color: var(--gray0);
+    color: var(--gray3);
+  }
+
+  @media (min-width: 769px) {
+    section {
+      &:nth-child(1) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 0px;
+
+        h2 {
+          margin-top: 0;
+        }
+        h3 {
+          margin-bottom: 1rem;
+        
+        }
+      }
+    }
+  }
+`;
+
+export const StyledNewTechstList = styled.ul`
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 2rem;
+  border-radius: 4px;
+  background-color: var(--gray3);
+
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--gray4);
+    margin: 1rem 1rem;
+    padding: 0 10px;
+    border-radius: 4px;
+  }
+
+  li > h2 {
+    color: var(--gray0);
+    font-size: 1rem;
+  }
+
+  @media (min-width: 769px) {
+    margin-bottom: 2rem;
   }
 `;

@@ -1,23 +1,38 @@
 import { useNavigate } from "react-router-dom";
-import StyledHeaderDashboard, { StyledMainDashboard } from "./dashboardstyle";
-import {toast} from 'react-toastify'
+import StyledHeaderDashboard, {
+  StyledMainDashboard,
+  StyledNewTechstList,
+} from "./dashboardstyle";
+import { toast } from "react-toastify";
+import { useState, useContext } from "react";
+import Modal from "react-modal";
+import ModalNewTech from "../ModalNewTechForm/modalnewtechformpage";
+import StyledModal from "../ModalNewTechForm/modalnewtechform";
+
+Modal.setAppElement("div");
+
 const DashboardPage = () => {
   const userName = localStorage.getItem("@USENAME");
   const userModule = localStorage.getItem("@MODULE");
+  const newTechs = JSON.parse(localStorage.getItem('@TECHSLIST'))
+  
 
-  const navigate = useNavigate()
-  const logOff = ()=>{
-         navigate('/')
+  const [modalIsOpen, setIsOpen] = useState(false);
 
+  const openModal = () => {
+    setIsOpen(true);
+  };
 
-    async function createTechnology(data) {
-        try{
-            api.post('users/techs', data)
-        }catch(erro){
-            toast.error('Tente novamente')
-        }
-    }
-  }
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const navigate = useNavigate();
+  const logOff = () => {
+    localStorage.clear()
+    navigate("/");
+  };
+
   return (
     <>
       <StyledHeaderDashboard>
@@ -29,15 +44,30 @@ const DashboardPage = () => {
 
       <StyledMainDashboard>
         <section>
-            <h2>Olá, {userName}</h2>
-            <h3>{userModule}</h3>
+          <h2>Olá, {userName}</h2>
+          <h3>{userModule}</h3>
         </section>
         <section>
-            <div>
-                <h2>Tecnologias</h2>
-                <button>+</button>
-            </div>
+          <div>
+            <h2>Tecnologias</h2>
+            <button onClick={openModal}>+</button>
+          </div>
 
+          <StyledModal isOpen={modalIsOpen} onRequestClose={closeModal}>
+            <ModalNewTech closeModal={closeModal} />
+          </StyledModal>
+
+          <div>
+            <StyledNewTechstList>
+        
+                    {/* {newTechs.map((createTech) => (
+                      <li key={createTech.id}>
+                        <h2>{createTech.title}</h2>
+                        <h3>{createTech.status}</h3>
+                      </li>
+                    ))} */}
+            </StyledNewTechstList>
+          </div>
         </section>
       </StyledMainDashboard>
     </>
