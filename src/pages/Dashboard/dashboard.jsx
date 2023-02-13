@@ -3,8 +3,7 @@ import StyledHeaderDashboard, {
   StyledMainDashboard,
   StyledNewTechstList,
 } from "./dashboardstyle";
-import { toast } from "react-toastify";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import Modal from "react-modal";
 import ModalNewTech from "../ModalNewTechForm/modalnewtechformpage";
 import StyledModal from "../ModalNewTechForm/modalnewtechform";
@@ -16,8 +15,7 @@ const DashboardPage = () => {
   const userModule = localStorage.getItem("@MODULE");
   const storedTechs = localStorage.getItem("@TECHSLIST");
   const newTechs = storedTechs ? JSON.parse(storedTechs) : [];
-  
-  
+
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const openModal = () => {

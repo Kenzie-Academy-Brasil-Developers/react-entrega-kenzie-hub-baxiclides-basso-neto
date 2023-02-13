@@ -21,9 +21,9 @@ const StyledHeaderLogin = styled.div`
     text-align: center;
   }
 
-  main > div{
+  main > div {
     margin: 0 auto;
-    padding-top: .5rem;
+    padding-top: 0.5rem;
     background-color: var(--gray3);
     border-radius: 4px;
     max-width: 385px;
@@ -54,11 +54,9 @@ const StyledHeaderLogin = styled.div`
     padding-left: 1rem;
   }
 
-  input:hover{
+  input:hover {
     border: 1px solid green;
   }
-  
- 
 
   form > p {
     color: var(--gray1);
@@ -66,7 +64,7 @@ const StyledHeaderLogin = styled.div`
     text-align: center;
   }
 
-  form > span{
+  form > span {
     color: var(--gray1);
     font-size: 0.8rem;
     width: 90%;

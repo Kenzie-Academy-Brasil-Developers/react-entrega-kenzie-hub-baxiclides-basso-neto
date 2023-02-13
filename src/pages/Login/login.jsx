@@ -13,7 +13,6 @@ const formShema = yup.object().shape({
 });
 
 const LoginPage = () => {
-  const [user, setUser] = useState({});
   const {
     register,
     handleSubmit,
@@ -24,25 +23,22 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  const createLogin = ()=>{
-    navigate('/signup')
-  }
+  const createLogin = () => {
+    navigate("/signup");
+  };
 
   const login = async (data) => {
     try {
       const loggeduser = await api.post("sessions", data);
-      setUser(loggeduser.data.user);
       localStorage.setItem("@TOKEN", loggeduser.data.token);
       localStorage.setItem("@USERID", loggeduser.data.user.id);
       localStorage.setItem("@USENAME", loggeduser.data.user.name);
       localStorage.setItem("@MODULE", loggeduser.data.user.course_module);
-      
-      
 
       toast.success("Bem-vindo!");
       navigate("/dashboard");
     } catch (error) {
-      toast.error('Dados inválidos')
+      toast.error("Dados inválidos");
     }
   };
 
@@ -74,7 +70,9 @@ const LoginPage = () => {
               <p>Ainda não possui uma conta?</p>
             </form>
             <div>
-              <button onClick={createLogin} type="button">Cadastre-se</button>
+              <button onClick={createLogin} type="button">
+                Cadastre-se
+              </button>
             </div>
           </div>
         </main>

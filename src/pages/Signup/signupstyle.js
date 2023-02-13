@@ -29,8 +29,8 @@ export const StyledSignUpPageMain = styled.main`
   align-items: center;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  padding: 0 .5rem;
-  
+  padding: 0 0.5rem;
+
   div {
     display: flex;
     flex-direction: column;
@@ -79,7 +79,7 @@ export const StyledSignUpPageMain = styled.main`
     color: var(--gray0);
   }
 
-  input:hover{
+  input:hover {
     border: 1px solid green;
   }
 
@@ -100,7 +100,7 @@ export const StyledSignUpPageMain = styled.main`
     border-radius: 4px;
   }
 
-  select:hover{
+  select:hover {
     border: 1px solid green;
   }
 

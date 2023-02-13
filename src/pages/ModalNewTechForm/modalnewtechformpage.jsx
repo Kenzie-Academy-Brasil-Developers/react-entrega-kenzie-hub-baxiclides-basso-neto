@@ -1,8 +1,7 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import api from "../../services/api";
-
 
 export const NewTechContext = createContext([]);
 
@@ -19,16 +18,15 @@ const ModalNewTech = ({ closeModal }) => {
       const response = await api.post("users/techs", data, { headers });
       const responseObj = response.data;
       const responseArray = [responseObj];
-    
-      localStorage.setItem('@TECHSLIST', JSON.stringify(responseArray))
-      
+
+      localStorage.setItem("@TECHSLIST", JSON.stringify(responseArray));
+
       toast.success("Tecnologia criada com sucesso");
       closeModal();
     } catch (error) {
       toast.error("Tente novamente");
     }
   };
-
 
   return (
     <>

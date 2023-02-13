@@ -1,12 +1,7 @@
-import StyledNotFoundPage from "./notfoundstyle"
+import StyledNotFoundPage from "./notfoundstyle";
 
-const NotFoundPage = ()=>{
-    return(
-        <StyledNotFoundPage>
-                Page Not Found
-        </StyledNotFoundPage>
-            
-    )
-}
+const NotFoundPage = () => {
+  return <StyledNotFoundPage>Page Not Found</StyledNotFoundPage>;
+};
 
-export default NotFoundPage
+export default NotFoundPage;

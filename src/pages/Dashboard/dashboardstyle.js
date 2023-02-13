@@ -30,8 +30,8 @@ const StyledHeaderDashboard = styled.header`
     background-color: var(--color-primary);
   }
 
-  @media(min-width: 769px){
-    div >h1{
+  @media (min-width: 769px) {
+    div > h1 {
       margin-top: 1rem;
     }
   }
@@ -105,7 +105,6 @@ export const StyledMainDashboard = styled.main`
         }
         h3 {
           margin-bottom: 1rem;
-        
         }
       }
     }
@@ -118,7 +117,6 @@ export const StyledNewTechstList = styled.ul`
   margin-top: 2rem;
   border-radius: 4px;
   background-color: var(--gray3);
-
 
   li {
     display: flex;
@@ -135,9 +133,9 @@ export const StyledNewTechstList = styled.ul`
     font-size: 1rem;
   }
 
-  h3{
+  h3 {
     text-align: center;
-    padding-top: .5rem;
+    padding-top: 0.5rem;
   }
 
   @media (min-width: 769px) {

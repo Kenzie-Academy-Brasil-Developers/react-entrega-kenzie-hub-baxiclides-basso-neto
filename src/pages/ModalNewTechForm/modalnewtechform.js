@@ -80,22 +80,14 @@ const StyledModal = styled(Modal)`
     border-radius: 4px;
   }
 
-  form > button:hover{
+  form > button:hover {
     background-color: var(--gray0);
     color: var(--color-primary-Negative);
     border: 1px solid var(--color-primary-Negative);
   }
 
-  @media(min-width:769px){
+  @media (min-width: 769px) {
     max-width: 400px;
   }
-`
-export default StyledModal
-
-
-
-
-
-
-
-
+`;
+export default StyledModal;

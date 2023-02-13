@@ -60,7 +60,13 @@ const SignUpPage = () => {
       <StyledSignUpPageHeader>
         <div>
           <h1>Kenzie Hub</h1>
-          <button onClick={()=>{navigate('/')}} >Voltar</button>
+          <button
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Voltar
+          </button>
         </div>
       </StyledSignUpPageHeader>
 
@@ -122,9 +128,15 @@ const SignUpPage = () => {
               <option value="Primeiro Módulo">
                 Primeiro Módulo - Introducação ao Frontend
               </option>
-              <option value="Segundo Módulo - JavaScript Avançado">Segundo Módulo - JavaScript Avançado</option>
-              <option value="Terceiro Módulo - Introdução ao ReactJS">Terceiro Módulo - Introdução ao ReactJS</option>
-              <option value="Quarto Módulo - React Avançado">Quarto Módulo - React Avançado</option>
+              <option value="Segundo Módulo - JavaScript Avançado">
+                Segundo Módulo - JavaScript Avançado
+              </option>
+              <option value="Terceiro Módulo - Introdução ao ReactJS">
+                Terceiro Módulo - Introdução ao ReactJS
+              </option>
+              <option value="Quarto Módulo - React Avançado">
+                Quarto Módulo - React Avançado
+              </option>
             </select>
             <button type="submit" onClick={() => setDisable(true)}>
               Cadastrar
