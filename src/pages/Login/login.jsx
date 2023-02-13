@@ -36,7 +36,7 @@ const LoginPage = () => {
       localStorage.setItem("@USERID", loggeduser.data.user.id);
       localStorage.setItem("@USENAME", loggeduser.data.user.name);
       localStorage.setItem("@MODULE", loggeduser.data.user.course_module);
-      localStorage.setItem('@TECHSLIST', JSON.stringify(responseArray))
+      
       
 
       toast.success("Bem-vindo!");

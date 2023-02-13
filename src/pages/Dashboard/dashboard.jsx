@@ -14,9 +14,10 @@ Modal.setAppElement("div");
 const DashboardPage = () => {
   const userName = localStorage.getItem("@USENAME");
   const userModule = localStorage.getItem("@MODULE");
-  const newTechs = JSON.parse(localStorage.getItem('@TECHSLIST'))
+  const storedTechs = localStorage.getItem("@TECHSLIST");
+  const newTechs = storedTechs ? JSON.parse(storedTechs) : [];
   
-
+  
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -29,7 +30,7 @@ const DashboardPage = () => {
 
   const navigate = useNavigate();
   const logOff = () => {
-    localStorage.clear()
+    localStorage.clear();
     navigate("/");
   };
 
@@ -59,13 +60,16 @@ const DashboardPage = () => {
 
           <div>
             <StyledNewTechstList>
-        
-                    {/* {newTechs.map((createTech) => (
-                      <li key={createTech.id}>
-                        <h2>{createTech.title}</h2>
-                        <h3>{createTech.status}</h3>
-                      </li>
-                    ))} */}
+              {newTechs.length > 0 ? (
+                newTechs.map((createTech) => (
+                  <li key={createTech.id}>
+                    <h2>{createTech.title}</h2>
+                    <h3>{createTech.status}</h3>
+                  </li>
+                ))
+              ) : (
+                <h3>Você não possui tecnologia cadastrada</h3>
+              )}
             </StyledNewTechstList>
           </div>
         </section>

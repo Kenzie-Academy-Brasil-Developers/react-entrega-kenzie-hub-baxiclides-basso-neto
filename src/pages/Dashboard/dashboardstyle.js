@@ -15,8 +15,6 @@ const StyledHeaderDashboard = styled.header`
     color: var(--color-primary);
     font-size: 1rem;
     text-align: center;
-    margin-top: 5rem;
-    margin-bottom: 1rem;
     align-self: center;
   }
 
@@ -34,7 +32,7 @@ const StyledHeaderDashboard = styled.header`
 
   @media(min-width: 769px){
     div >h1{
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
   }
 `;
@@ -135,6 +133,11 @@ export const StyledNewTechstList = styled.ul`
   li > h2 {
     color: var(--gray0);
     font-size: 1rem;
+  }
+
+  h3{
+    text-align: center;
+    padding-top: .5rem;
   }
 
   @media (min-width: 769px) {
