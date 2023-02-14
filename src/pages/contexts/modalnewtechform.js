@@ -8,7 +8,6 @@ const StyledModal = styled(Modal)`
   background-color: var(--gray2);
   /* width: 95%;
   height: 70%; */
-
   header {
     width: 100%;
     display: flex;
@@ -16,21 +15,17 @@ const StyledModal = styled(Modal)`
     background-color: var(--gray2);
     padding: 10px 16px;
   }
-
   header > h1 {
     color: var(--gray0);
     font-size: 0.9rem;
   }
-
   header > span {
     color: var(--gray1);
   }
-
   main {
     background-color: var(--gray3);
     height: 100%;
   }
-
   main > form {
     display: flex;
     flex-direction: column;
@@ -38,14 +33,12 @@ const StyledModal = styled(Modal)`
     margin-top: 1.5rem;
     width: 90%;
   }
-
   form > label {
     color: var(--gray0);
     font-size: 0.8rem;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
   }
-
   form > input {
     border: none;
     height: 3rem;
@@ -54,7 +47,6 @@ const StyledModal = styled(Modal)`
     color: var(--gray0);
     padding-left: 1rem;
   }
-
   form > select {
     color: var(--gray0);
     width: 100%;
@@ -65,11 +57,9 @@ const StyledModal = styled(Modal)`
     background-color: var(--gray2);
     border-radius: 4px;
   }
-
   select > option {
     color: var(--gray0);
   }
-
   form > button {
     margin: 1rem auto 1rem;
     width: 100%;
@@ -79,13 +69,11 @@ const StyledModal = styled(Modal)`
     background-color: var(--color-primary-Negative);
     border-radius: 4px;
   }
-
   form > button:hover {
     background-color: var(--gray0);
     color: var(--color-primary-Negative);
     border: 1px solid var(--color-primary-Negative);
   }
-
   @media (min-width: 769px) {
     max-width: 400px;
   }

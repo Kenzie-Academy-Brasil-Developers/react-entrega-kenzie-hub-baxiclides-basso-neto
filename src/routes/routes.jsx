@@ -5,7 +5,7 @@ import DashboardPage from "../pages/Dashboard/dashboard";
 import LoginPage from "../pages/Login/login";
 import SignUpPage from "../pages/Signup/signup";
 import NotFoundPage from "../pages/NotFoundPage/notfoundpage";
-import NewTechFormPage from "../pages/ModalNewTechForm/modalnewtechformpage";
+
 
 const AppRoutes = () => {
   return (

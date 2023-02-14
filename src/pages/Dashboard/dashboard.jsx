@@ -1,20 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import StyledHeaderDashboard, {
-  StyledMainDashboard,
-  StyledNewTechstList,
+  StyledMainDashboard
 } from "./dashboardstyle";
 import { useState } from "react";
 import Modal from "react-modal";
-import ModalNewTech from "../ModalNewTechForm/modalnewtechformpage";
-import StyledModal from "../ModalNewTechForm/modalnewtechform";
+import StyledModal from "../contexts/modalnewtechform";
+import TechsProvider from "../contexts/modalnewtechformpage";
+
 
 Modal.setAppElement("div");
 
 const DashboardPage = () => {
   const userName = localStorage.getItem("@USENAME");
   const userModule = localStorage.getItem("@MODULE");
-  const storedTechs = localStorage.getItem("@TECHSLIST");
-  const newTechs = storedTechs ? JSON.parse(storedTechs) : [];
+  // const storedTechs = localStorage.getItem("@TECHSLIST");
+  // const newTechs = storedTechs ? JSON.parse(storedTechs) : [];
 
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -53,10 +53,11 @@ const DashboardPage = () => {
           </div>
 
           <StyledModal isOpen={modalIsOpen} onRequestClose={closeModal}>
-            <ModalNewTech closeModal={closeModal} />
+            <TechsProvider />
+            {/* <ModalNewTech closeModal={closeModal} /> */}
           </StyledModal>
 
-          <div>
+          {/* <div>
             <StyledNewTechstList>
               {newTechs.length > 0 ? (
                 newTechs.map((createTech) => (
@@ -69,7 +70,7 @@ const DashboardPage = () => {
                 <h3>Você não possui tecnologia cadastrada</h3>
               )}
             </StyledNewTechstList>
-          </div>
+          </div> */}
         </section>
       </StyledMainDashboard>
     </>
