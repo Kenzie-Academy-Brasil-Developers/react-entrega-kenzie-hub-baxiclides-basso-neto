@@ -1,50 +1,30 @@
-import { useNavigate } from "react-router-dom";
-import StyledHeaderDashboard, {
-  StyledMainDashboard
-} from "./dashboardstyle";
-import { useState } from "react";
+import React from "react";
+import StyledHeaderDashboard, { StyledMainDashboard } from "./Dashboardstyle";
+import { useContext } from "react";
 import Modal from "react-modal";
-import StyledModal from "../contexts/modalnewtechform";
-import TechsProvider from "../contexts/modalnewtechformpage";
-
+import StyledModal from "../modal/Modalnewtechform";
+import TechsProvider from "../modal/Modalnewtechformpage";
+import { UserContext } from "../../providers/UserContext";
 
 Modal.setAppElement("div");
 
 const DashboardPage = () => {
-  const userName = localStorage.getItem("@USENAME");
-  const userModule = localStorage.getItem("@MODULE");
-  // const storedTechs = localStorage.getItem("@TECHSLIST");
-  // const newTechs = storedTechs ? JSON.parse(storedTechs) : [];
-
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
-  const navigate = useNavigate();
-  const logOff = () => {
-    localStorage.clear();
-    navigate("/");
-  };
+  const { userLogout, user, modalIsOpen, openModal, closeModal } =
+    useContext(UserContext);
 
   return (
     <>
       <StyledHeaderDashboard>
         <div>
           <h1>Kenzie Hub</h1>
-          <button onClick={logOff}>Sair</button>
+          <button onClick={userLogout}>Sair</button>
         </div>
       </StyledHeaderDashboard>
 
       <StyledMainDashboard>
         <section>
-          <h2>Olá, {userName}</h2>
-          <h3>{userModule}</h3>
+          <h2>Olá, {user.name}</h2>
+          <h3>{user.course_module}</h3>
         </section>
         <section>
           <div>

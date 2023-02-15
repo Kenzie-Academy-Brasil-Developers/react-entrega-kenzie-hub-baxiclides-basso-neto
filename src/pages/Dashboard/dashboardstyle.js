@@ -4,7 +4,7 @@ const StyledHeaderDashboard = styled.header`
   div {
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem 0.5rem 0.5rem;
+    padding: 0.5rem 0.5rem 0.5rem;
     border-bottom: 3px solid var(--gray3);
     height: 100%;
     align-items: center;
@@ -39,7 +39,7 @@ const StyledHeaderDashboard = styled.header`
 export default StyledHeaderDashboard;
 
 export const StyledMainDashboard = styled.main`
-  padding: 0 0.5rem;
+  padding: 0.5rem;
   max-width: 1200px;
   margin: 0 auto;
   border: 3px solid var(--gray3);

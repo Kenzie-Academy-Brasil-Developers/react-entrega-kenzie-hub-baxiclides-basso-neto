@@ -1,11 +1,11 @@
+import React from "react";
 import { useForm } from "react-hook-form";
-import StyledHeaderLogin from "./loginstyle";
+import StyledHeaderLogin from "./Loginstyle";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import api from "../../services/api";
+import { useContext } from "react";
+import { UserContext } from "../../providers/UserContext";
 
 const formShema = yup.object().shape({
   email: yup.string().required("Email inválido").email("Email inválido"),
@@ -13,6 +13,7 @@ const formShema = yup.object().shape({
 });
 
 const LoginPage = () => {
+  const { userLogin } = useContext(UserContext);
   const {
     register,
     handleSubmit,
@@ -23,23 +24,8 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  const createLogin = () => {
-    navigate("/signup");
-  };
-
-  const login = async (data) => {
-    try {
-      const loggeduser = await api.post("sessions", data);
-      localStorage.setItem("@TOKEN", loggeduser.data.token);
-      localStorage.setItem("@USERID", loggeduser.data.user.id);
-      localStorage.setItem("@USENAME", loggeduser.data.user.name);
-      localStorage.setItem("@MODULE", loggeduser.data.user.course_module);
-
-      toast.success("Bem-vindo!");
-      navigate("/dashboard");
-    } catch (error) {
-      toast.error("Dados inválidos");
-    }
+  const submit = (formData) => {
+    userLogin(formData);
   };
 
   return (
@@ -49,7 +35,7 @@ const LoginPage = () => {
         <main>
           <div>
             <h2>Login</h2>
-            <form onSubmit={handleSubmit(login)}>
+            <form onSubmit={handleSubmit(submit)}>
               <label htmlFor="email">Email</label>
               <input
                 type="text"
@@ -70,7 +56,7 @@ const LoginPage = () => {
               <p>Ainda não possui uma conta?</p>
             </form>
             <div>
-              <button onClick={createLogin} type="button">
+              <button type="button" onClick={() => navigate("/signup")}>
                 Cadastre-se
               </button>
             </div>

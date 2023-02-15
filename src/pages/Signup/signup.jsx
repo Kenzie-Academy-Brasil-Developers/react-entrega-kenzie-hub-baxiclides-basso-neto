@@ -1,11 +1,11 @@
-import { StyledSignUpPageHeader, StyledSignUpPageMain } from "./signupstyle";
+import React, { useContext } from "react";
+import { StyledSignUpPageHeader, StyledSignUpPageMain } from "./Signupstyle";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import api from "../../services/api";
-import { toast } from "react-toastify";
 import { useState } from "react";
+import { UserContext } from "../../providers/UserContext";
 
 const formSchema = yup.object().shape({
   name: yup.string().required("Nome obrigatório"),
@@ -28,8 +28,9 @@ const formSchema = yup.object().shape({
 });
 
 const SignUpPage = () => {
+  const { userSignup } = useContext(UserContext);
   const [disable, setDisable] = useState(false);
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -38,21 +39,16 @@ const SignUpPage = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const navigate = useNavigate();
+  const submit = (formData) => {
+    userSignup(formData);
+  };
 
-  const onSubmitFunction = async (data) => {
-    delete data.confirm;
+  const handleBtn = () => {
+    setDisable(true);
 
-    try {
-      await api.post("users", data);
-      toast.success("Cadastrado com sucesso");
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-      toast.error("Tente novamente");
-    } finally {
-      setDisable(true);
-    }
+    setTimeout(() => {
+      setDisable(false);
+    }, 3000);
   };
 
   return (
@@ -74,7 +70,7 @@ const SignUpPage = () => {
         <div>
           <h2>Crie a sua conta</h2>
           <h5>Rápido e grátis, vamos nessa</h5>
-          <form onSubmit={handleSubmit(onSubmitFunction)}>
+          <form onSubmit={handleSubmit(submit)}>
             <label htmlFor="name">Nome</label>
             <input
               id="name"
@@ -138,7 +134,7 @@ const SignUpPage = () => {
                 Quarto Módulo - React Avançado
               </option>
             </select>
-            <button type="submit" onClick={() => setDisable(true)}>
+            <button type="submit" onClick={() => handleBtn()}>
               Cadastrar
             </button>
           </form>
@@ -147,5 +143,4 @@ const SignUpPage = () => {
     </>
   );
 };
-
 export default SignUpPage;
