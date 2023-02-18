@@ -1,31 +1,15 @@
-import { createContext } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
-import api from "../../services/api";
+import { TechsContext } from "../../providers/TechsContext";
+import { UserContext } from "../../providers/UserContext";
 
-export const NewTechContext = createContext([]);
-
-const ModalNewTech = ({ closeModal }) => {
-  const token = localStorage.getItem("@TOKEN");
-  const headers = {
-    Authorization: `Bearer ${token}`,
-  };
-
+const ModalNewTech = () => {
   const { register, handleSubmit } = useForm();
+  const { techsCreate } = useContext(TechsContext);
+  const { closeModal } = useContext(UserContext);
 
-  const newTechRequest = async (data) => {
-    try {
-      const response = await api.post("users/techs", data, { headers });
-      const responseObj = response.data;
-      const responseArray = [responseObj];
-
-      localStorage.setItem("@TECHSLIST", JSON.stringify(responseArray));
-
-      toast.success("Tecnologia criada com sucesso");
-      closeModal();
-    } catch (error) {
-      toast.error("Tente novamente");
-    }
+  const submit = (formData) => {
+    techsCreate(formData);
   };
 
   return (
@@ -35,7 +19,7 @@ const ModalNewTech = ({ closeModal }) => {
         <span onClick={closeModal}>x</span>
       </header>
       <main>
-        <form onSubmit={handleSubmit(newTechRequest)}>
+        <form onSubmit={handleSubmit(submit)}>
           <label htmlFor="title">Nome</label>
           <input
             type="text"
@@ -50,7 +34,7 @@ const ModalNewTech = ({ closeModal }) => {
             <option value="Intermediário">Intermediário</option>
             <option value="Avançado">Avançado</option>
           </select>
-          <button type="submit">Cadastrar Tecnologia</button>
+          <button type="submit" onClick={closeModal} >Cadastrar Tecnologia</button>
         </form>
       </main>
     </>

@@ -118,6 +118,13 @@ export const StyledNewTechstList = styled.ul`
   border-radius: 4px;
   background-color: var(--gray3);
 
+  p{
+    text-align: center;
+    color: var(--gray0);
+    font-size: 2rem;
+    padding: 1rem;
+  }
+
   li {
     display: flex;
     justify-content: space-between;

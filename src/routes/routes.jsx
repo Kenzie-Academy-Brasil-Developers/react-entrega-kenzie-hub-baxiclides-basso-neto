@@ -6,6 +6,7 @@ import LoginPage from "../pages/login/Login";
 import SignUpPage from "../pages/signup/Signup";
 import NotFoundPage from "../pages/notFoundPage/Notfoundpage";
 import ProtectedRoutes from "../protectedRoutes/ProtectedRoutes";
+import TechsProvider from "../providers/TechsContext";
 
 const AppRoutes = () => {
   return (
@@ -16,8 +17,10 @@ const AppRoutes = () => {
         path="/dashboard"
         element={
           <ProtectedRoutes>
-            {" "}
-            <DashboardPage />{" "}
+            <TechsProvider>
+              {" "}
+              <DashboardPage />{" "}
+            </TechsProvider>
           </ProtectedRoutes>
         }
       />

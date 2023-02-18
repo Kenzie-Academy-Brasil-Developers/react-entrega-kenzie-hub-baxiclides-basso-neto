@@ -58,6 +58,7 @@ export const UserProvider = ({ children }) => {
           navigate("/dashboard");
         } catch (error) {
           console.log(error);
+          localStorage.removeItem("@TOKEN");
         }
       };
       userAutoLogin();
@@ -78,6 +79,7 @@ export const UserProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         user,
+        setUser,
         userSignup,
         userLogin,
         userLogout,

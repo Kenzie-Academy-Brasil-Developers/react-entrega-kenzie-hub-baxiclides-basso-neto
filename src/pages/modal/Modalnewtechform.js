@@ -4,10 +4,12 @@ import Modal from "react-modal";
 const StyledModal = styled(Modal)`
   display: flex;
   flex-direction: column;
+  width: 90%;
+  max-width: 400px;
   margin: 8.5rem auto;
   background-color: var(--gray2);
-  /* width: 95%;
-  height: 70%; */
+  
+
   header {
     width: 100%;
     display: flex;
