@@ -108,7 +108,6 @@ const DashboardPage = () => {
         <section>
           <h2>Olá, {user.name}</h2>
           <h3>{user.course_module}</h3>
-          <h3>{user.tech}</h3>
         </section>
         <section>
           <div>

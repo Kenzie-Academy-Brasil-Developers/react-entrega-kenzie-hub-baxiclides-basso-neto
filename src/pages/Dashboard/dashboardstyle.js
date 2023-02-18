@@ -56,6 +56,7 @@ export const StyledMainDashboard = styled.main`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
   }
 
   section > h2 {
