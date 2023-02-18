@@ -11,7 +11,6 @@ const TechsProvider = ({ children }) => {
     Authorization: `Bearer ${token}`,
   };
 
-  //formData = title e status - virão do formulario
   const techsCreate = async (formData) => {
     try {
       const response = await api.post("users/techs", formData, { headers });
@@ -19,7 +18,6 @@ const TechsProvider = ({ children }) => {
       const responseObj = response.data;
 
       const responseArray = [responseObj];
-      console.log(responseArray);
 
       setTechs([...techs, responseObj]);
 

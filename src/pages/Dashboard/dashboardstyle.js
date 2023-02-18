@@ -118,7 +118,7 @@ export const StyledNewTechstList = styled.ul`
   border-radius: 4px;
   background-color: var(--gray3);
 
-  p{
+  p {
     text-align: center;
     color: var(--gray0);
     font-size: 2rem;

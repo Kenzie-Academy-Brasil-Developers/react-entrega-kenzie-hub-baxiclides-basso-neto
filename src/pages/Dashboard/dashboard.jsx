@@ -8,15 +8,17 @@ import Modal from "react-modal";
 import StyledModal from "../modal/Modalnewtechform";
 import TechsProvider from "../modal/Modalnewtechformpage";
 import { UserContext } from "../../providers/UserContext";
+import { useForm } from "react-hook-form";
 import api from "../../services/api";
 import { toast } from "react-toastify";
 import { StyledUpdateTechForm, StyledBtn } from "../modal/ModalUpdateTech";
-import Seletc from "../../components/select/Seletc";
+import { useEffect } from "react";
 
 Modal.setAppElement("div");
 
 const DashboardPage = () => {
   const token = localStorage.getItem("@TOKEN");
+
   const headers = {
     Authorization: `Bearer ${token}`,
   };
@@ -42,13 +44,36 @@ const DashboardPage = () => {
   };
   TechsLoading(user.id);
 
-  const TechsUpdate = async(id)=>{
+  const TechsUpdate = async (id, formData) => {
     try {
-      const response = await api.put(`users/techs/${id}`)
+      await api.put(`users/techs/${id}`, formData, { headers });
+      const techsUpdated = techsList.map((tech) => {
+        if (id === tech.id) {
+          return { ...tech, ...formData };
+        } else {
+          return tech;
+        }
+      });
+      setTechsList(techsUpdated);
+      toast.success("Tecnologia atualizada com sucesso!");
     } catch (error) {
-      
+      console.log(error);
+      toast.error("Ocorreu um erro, tente novamente!");
     }
-  }
+  };
+
+  const { register, handleSubmit, watch } = useForm();
+
+  const [selectedStatus, setSelectedStatus] = useState("");
+
+  useEffect(() => {
+    setSelectedStatus(watch("status"));
+  }, [watch("status")]);
+
+  const submitUpdate = (formData) => {
+    TechsUpdate(techId, formData);
+    closeModal1();
+  };
 
   const TechsRemove = async (id) => {
     try {
@@ -133,22 +158,31 @@ const DashboardPage = () => {
               <h4>Nome da tecnologia</h4>
               <h3>{selectedTech}</h3>
               <h4>Status</h4>
-             <Seletc />
+              <form onSubmit={handleSubmit(submitUpdate)}>
+                <select name="status" id="status" {...register("status")}>
+                  <option value="">Escolha uma opção</option>
+                  <option value="Iniciante">Iniciante</option>
+                  <option value="Intermediário">Intermediário</option>
+                  <option value="Avançado">Avançado</option>
+                </select>
+                <StyledBtn>
+                  
+                    <button type="submit">Salvar alterações</button>
+                    <button
+                      type="button"
+                      className="primary"
+                      onClick={() => {
+                        TechsRemove(techId);
+                        closeModal1();
+                      }}
+                    >
+                      Excluir
+                    </button>
+                
+                </StyledBtn>
+              </form>
             </div>
           </main>
-          <StyledBtn>
-            <button>Salvar alterações</button>
-            <button
-              type="button"
-              className="primary"
-              onClick={() => {
-                TechsRemove(techId);
-                closeModal1();
-              }}
-            >
-              Excluir
-            </button>
-          </StyledBtn>
         </StyledUpdateTechForm>
       )}
     </>

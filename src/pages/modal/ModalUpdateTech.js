@@ -18,12 +18,12 @@ export const StyledUpdateTechForm = styled(Modal)`
       padding: 10px;
     }
 
-    span{
-        color: var(--gray1);
-        position: absolute;
-        font-size: .8rem;
-        right: 10px;
-        top: 8px;
+    span {
+      color: var(--gray1);
+      position: absolute;
+      font-size: 0.8rem;
+      right: 10px;
+      top: 8px;
     }
   }
 
@@ -36,56 +36,64 @@ export const StyledUpdateTechForm = styled(Modal)`
       gap: 0.3rem;
       padding: 10px;
 
-      h3 {
-        color: var(--gray1);
-        font-size: 0.8rem;
-        font-weight: 100;
-        background-color: var(--gray2);
-        padding: 10px;
-        border-radius: 4px;
+      form {
+        select {
+          background-color: var(--gray2);
+          color: var(--gray1);
+          padding: 10px;
+          width: 100%;
+          border-radius: 4px;
+        }
       }
+    }
 
-      h4 {
-        color: var(--gray0);
-        font-size: 0.7rem;
-        font-weight: 100;
-        margin-top: 0.5rem;
-      }
+    h3 {
+      color: var(--gray1);
+      font-size: 0.8rem;
+      font-weight: 100;
+      background-color: var(--gray2);
+      padding: 10px;
+      border-radius: 4px;
+    }
 
-      select {
-        background-color: var(--gray2);
-        color: var(--gray1);
-        padding: 10px;
-      }
+    h4 {
+      color: var(--gray0);
+      font-size: 0.7rem;
+      font-weight: 100;
+      margin-top: 0.5rem;
     }
   }
 `;
 
-export const StyledBtn = styled.div`
-  
+export const StyledBtn = styled.footer`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
   background-color: var(--gray3);
-  padding: 10px;
-  padding-bottom: 1.5rem;
+
+  
 
   button {
     background-color: var(--color-primary-Negative);
     color: var(--gray0);
-    padding: 0.5rem 2.4rem;
     border-radius: 4px;
-    :hover{
-        background-color: var(--gray0);
-        color: var(--color-primary-Negative);
-        outline: 1px solid var(--color-primary-Negative);
-        font-weight: bolder;
+    padding: .5rem 2rem;
+    width: 60%;
+
+    :hover {
+      background-color: var(--gray0);
+      color: var(--color-primary-Negative);
+      outline: 1px solid var(--color-primary-Negative);
+      font-weight: bolder;
     }
 
     &.primary {
       background-color: var(--gray1);
       color: var(--gray0);
-      :hover{
+      padding: 0 2rem;
+      width: 35%;
+      :hover {
         background-color: var(--gray0);
         outline: 1px solid var(--gray1);
         color: var(--gray1);

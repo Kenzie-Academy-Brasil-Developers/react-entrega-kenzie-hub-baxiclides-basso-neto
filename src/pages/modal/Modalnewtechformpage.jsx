@@ -10,6 +10,7 @@ const ModalNewTech = () => {
 
   const submit = (formData) => {
     techsCreate(formData);
+    closeModal()
   };
 
   return (
@@ -29,12 +30,12 @@ const ModalNewTech = () => {
           />
           <label htmlFor="status">Selecionar status</label>
           <select name="status" id="status" {...register("status")}>
-            Selecione o status
+            <option value="">Selecione o status</option>
             <option value="Iniciante">Iniciante</option>
             <option value="Intermediário">Intermediário</option>
             <option value="Avançado">Avançado</option>
           </select>
-          <button type="submit" onClick={closeModal} >Cadastrar Tecnologia</button>
+          <button type="submit">Cadastrar Tecnologia</button>
         </form>
       </main>
     </>
