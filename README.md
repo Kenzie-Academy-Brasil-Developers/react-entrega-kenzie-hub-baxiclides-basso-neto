@@ -32,6 +32,9 @@
 
 A complete Hub project where you can signup yourself, login, add, update and delete technologies of your list.
 
+Link to the project on Vercel: [https://react-entrega-kenzie-hub-baxiclides-basso-neto.vercel.app/](https://react-entrega-kenzie-hub-baxiclides-basso-neto.vercel.app/)
+
+
 ## :sparkles: Features
 
 :heavy_check_mark: User registration and authentication
