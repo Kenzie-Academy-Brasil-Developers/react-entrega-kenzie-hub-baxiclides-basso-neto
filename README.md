@@ -45,7 +45,7 @@ Link to the project on Vercel: [https://react-entrega-kenzie-hub-baxiclides-bass
 
 The following tools were used in this project:
 
-- [React](https://pt-br.reactjs.org/)
+- [ReactJS](https://pt-br.reactjs.org/)
 - [React-modal](https://www.npmjs.com/package/react-modal)
 - [React-hook-form](https://react-hook-form.com/)
 - [React-toastify](https://fkhadra.github.io/react-toastify/introduction)
@@ -79,7 +79,7 @@ $ yarn start
 
 ## :memo: License
 
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
+This project is under license from MIT. For more details, see the [LICENSE](license) file.
 
 Made with :heart: by <a href="https://github.com/baxiclides-basso-neto" target="_blank">Baxiclides Basso Neto</a>
 
