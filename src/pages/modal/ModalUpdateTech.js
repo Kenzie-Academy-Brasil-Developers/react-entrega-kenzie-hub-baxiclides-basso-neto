@@ -24,6 +24,7 @@ export const StyledUpdateTechForm = styled(Modal)`
       font-size: 0.8rem;
       right: 10px;
       top: 8px;
+      cursor: pointer;
     }
   }
 

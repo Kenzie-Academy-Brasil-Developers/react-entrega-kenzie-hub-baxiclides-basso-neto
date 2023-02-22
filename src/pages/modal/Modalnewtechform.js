@@ -23,6 +23,7 @@ const StyledModal = styled(Modal)`
   }
   header > span {
     color: var(--gray1);
+    cursor: pointer;
   }
   main {
     background-color: var(--gray3);
