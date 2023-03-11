@@ -42,7 +42,8 @@ export const UserProvider = ({ children }) => {
     localStorage.removeItem("@TOKEN");
     navigate("/");
   };
-
+  
+  //useEffect com o array de dependência vazio para que seja executado apenas uma vez, na montagem do componente, quando a página é renderizada.
   useEffect(() => {
     const token = localStorage.getItem("@TOKEN");
 

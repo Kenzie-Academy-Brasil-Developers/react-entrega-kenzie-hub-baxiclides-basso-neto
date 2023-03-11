@@ -51,7 +51,6 @@ The following tools were used in this project:
 - [React-toastify](https://fkhadra.github.io/react-toastify/introduction)
 - [Axios](https://axios-http.com/ptbr/docs/intro)
 - [Context-API](https://pt-br.reactjs.org/docs/context.html)
-- [Axios](https://axios-http.com/ptbr/docs/intro)
 - [Styled-components](https://styled-components.com/)
 - [Media Queries](https://developer.mozilla.org/pt-BR/docs/Web/CSS/Media_Queries/Using_media_queries)
 
